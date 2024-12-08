@@ -2,6 +2,7 @@ package aoc2024.controller;
 
 import aoc2024.controller.input.supplier.Day1InputSupplier;
 import aoc2024.input.InputFileDataLoaderFactory;
+import aoc2024.model.day1.LocationDistanceCalculatorFactory;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -13,19 +14,9 @@ public class Day1ControllerTest {
 
     @Test
     public void testGetPart1Result() {
-        Supplier<List<String>> supplier = List::of;
+        var supplier = new Day1InputSupplier(new InputFileDataLoaderFactory());
 
-        var controller = new Day1Controller(supplier);
-        assertThat(controller.getPart1Result()).isEqualTo(0);
+        var controller = new Day1Controller(new LocationDistanceCalculatorFactory(), supplier);
+        assertThat(controller.getPart1Result()).isEqualTo(11);
     }
-
-    @Test
-    public void testGetPart2Result() {
-        Supplier<List<String>> supplier = List::of;
-
-        var controller = new Day1Controller(supplier);
-        assertThat(controller.getPart2Result()).isEqualTo(0);
-    }
-
-
 }

@@ -9,6 +9,5 @@ public class allDaysRunner extends BaseRunner {
 
     private static void runDay1() {
         Day1.runPart1();
-        Day1.runPart2();
     }
 }

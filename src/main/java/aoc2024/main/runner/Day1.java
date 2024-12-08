@@ -11,14 +11,13 @@ public class Day1 extends BaseRunner {
         createInjector();
 
         runPart1();
-        runPart2();
     }
 
     public static int runPart1() {
-        return 0;
-    }
+        var controller = injector.getInstance(Day1Controller.class);
 
-    public static int runPart2() {
-        return 0;
+        int result = controller.getPart1Result();
+        logger.info("The distance between lists is {}", result);
+        return result;
     }
 }

@@ -14,11 +14,6 @@ public class Day1Test {
 
     @Test
     public void testPart1() {
-        assertThat(Day1.runPart1()).isEqualTo(0);
-    }
-
-    @Test
-    public void testPart2() {
-        assertThat(Day1.runPart2()).isEqualTo(0);
+        assertThat(Day1.runPart1()).isEqualTo(1388114);
     }
 }
