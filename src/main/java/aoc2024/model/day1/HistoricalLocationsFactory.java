@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
-public class LocationDistanceCalculatorFactory {
-    public LocationDistanceCalculator create(List<String> combinedLocations) {
+public class HistoricalLocationsFactory {
+    public HistoricalLocations create(List<String> combinedLocations) {
         List<Integer> locationsList1 = new ArrayList<>();
         List<Integer> locationsList2 = new ArrayList<>();
 
@@ -18,7 +18,7 @@ public class LocationDistanceCalculatorFactory {
             locationsList2.add(Integer.parseInt(locationPair.get(1)));
         }
 
-        return LocationDistanceCalculator.builder()
+        return HistoricalLocations.builder()
                 .locationsList1(locationsList1)
                 .locationsList2(locationsList2)
                 .build();

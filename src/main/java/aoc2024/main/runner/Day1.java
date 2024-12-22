@@ -11,6 +11,7 @@ public class Day1 extends BaseRunner {
         createInjector();
 
         runPart1();
+        runPart2();
     }
 
     public static int runPart1() {
@@ -18,6 +19,14 @@ public class Day1 extends BaseRunner {
 
         int result = controller.getPart1Result();
         logger.info("The distance between lists is {}", result);
+        return result;
+    }
+
+    public static long runPart2() {
+        var controller = injector.getInstance(Day1Controller.class);
+
+        long result = controller.getPart2Result();
+        logger.info("The similarity score between lists is {}", result);
         return result;
     }
 }

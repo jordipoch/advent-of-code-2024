@@ -9,7 +9,7 @@ import java.util.List;
 
 @Getter
 @Builder
-public class LocationDistanceCalculator {
+public class HistoricalLocations {
     private List<Integer> locationsList1;
     private List<Integer> locationsList2;
 
@@ -24,6 +24,16 @@ public class LocationDistanceCalculator {
             distance += Math.abs(sortedLocationsList1.get(i) - sortedLocationsList2.get(i));
 
         return distance;
+    }
+
+    public long calculateSimilarityScore() {
+        return locationsList1.parallelStream()
+                .mapToLong(Integer::longValue)
+                .map(locationItem1 -> locationsList2.stream()
+                        .mapToLong(Integer::longValue)
+                        .filter(location -> location == locationItem1)
+                        .sum())
+                .sum();
     }
 
     private ArrayList<Integer> sortLocations(List<Integer> locations) {

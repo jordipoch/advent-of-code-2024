@@ -6,11 +6,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LocationDistanceCalculatorFactoryTest {
+public class HistoricalLocationsFactoryTest {
 
     @Test
     public void testCreate() {
-        var factory = new LocationDistanceCalculatorFactory();
+        var factory = new HistoricalLocationsFactory();
         var instance = factory.create(List.of("1 0", "3   2", "1    5"));
 
         assertThat(instance.getLocationsList1()).containsExactly(1, 3, 1);
