@@ -11,6 +11,7 @@ public class Day2 extends BaseRunner {
         createInjector();
 
         runPart1();
+        runPart2();
     }
 
     public static int runPart1() {
@@ -18,6 +19,14 @@ public class Day2 extends BaseRunner {
 
         int result = controller.getPart1Result();
         logger.info("There are {} safe reports", result);
+        return result;
+    }
+
+    public static int runPart2() {
+        var controller = injector.getInstance(Day2Controller.class);
+
+        int result = controller.getPart2Result();
+        logger.info("There are {} safe reports tolerating one bad level", result);
         return result;
     }
 }

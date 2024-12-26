@@ -23,4 +23,8 @@ public class Day2Controller {
     public int getPart1Result() {
         return unusualData.getNumSafeReports();
     }
+
+    public int getPart2Result() {
+        return unusualData.getNumSafeReportsToleratingOneBadLevel();
+    }
 }
