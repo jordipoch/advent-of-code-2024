@@ -1,8 +1,6 @@
 package aoc2024.controller;
 
-import aoc2024.controller.input.annotation.Day1;
 import aoc2024.controller.input.annotation.Day2;
-import aoc2024.model.day1.HistoricalLocationsFactory;
 import aoc2024.model.day2.UnusualData;
 import aoc2024.model.day2.UnusualDataFactory;
 
