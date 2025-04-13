@@ -11,6 +11,7 @@ public class Day3 extends BaseRunner {
         createInjector();
 
         runPart1();
+        runPart2();
     }
 
     public static long runPart1() {
@@ -18,6 +19,14 @@ public class Day3 extends BaseRunner {
 
         long result = controller.getPart1Result();
         logger.info("All multiply instructions results add up {}", result);
+        return result;
+    }
+
+    public static long runPart2() {
+        var controller = injector.getInstance(Day3Controller.class);
+
+        long result = controller.getPart2Result();
+        logger.info("Taking into account do and don't instructions, all multiply instructions, results add up {}", result);
         return result;
     }
 }

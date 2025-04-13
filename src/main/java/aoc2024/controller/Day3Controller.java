@@ -11,14 +11,22 @@ import java.util.function.Supplier;
 
 @Singleton
 public class Day3Controller {
-    private final CorruptedMemory corruptedMemory;
+    private final CorruptedMemoryFactory corruptedMemoryFactory;
+    private final Supplier<List<String>> inputData;
 
     @Inject
     public Day3Controller(CorruptedMemoryFactory corruptedMemoryFactory, @Day3 Supplier<List<String>> inputData) {
-        corruptedMemory = corruptedMemoryFactory.create(inputData.get());
+        this.corruptedMemoryFactory = corruptedMemoryFactory;
+        this.inputData = inputData;
     }
 
     public long getPart1Result() {
+        var corruptedMemory = corruptedMemoryFactory.create(inputData.get(), false);
+        return corruptedMemory.calculateSumOfAllMultiplications();
+    }
+
+    public long getPart2Result() {
+        var corruptedMemory = corruptedMemoryFactory.create(inputData.get(), true);
         return corruptedMemory.calculateSumOfAllMultiplications();
     }
 }

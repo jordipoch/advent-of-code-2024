@@ -2,19 +2,20 @@ package aoc2024.model.day3.instruction;
 
 import aoc2024.model.day3.CorruptedMemory;
 
-public class Do implements Instruction {
-    private static final Do instance = new Do();
+public class Dont implements Instruction {
+    private static final Dont instance = new Dont();
 
-    public static Do getInstance() {
+    public static Dont getInstance() {
         return instance;
     }
 
     @Override
     public void applyToMemory(CorruptedMemory memory) {
+        memory.disable();
     }
 
     @Override
     public String toString() {
-        return "do()";
+        return "don't()";
     }
 }

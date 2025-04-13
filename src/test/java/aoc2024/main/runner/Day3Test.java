@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day2Test {
+public class Day3Test {
 
     @BeforeClass
     public void setUp() {
@@ -14,11 +14,11 @@ public class Day2Test {
 
     @Test
     public void testPart1() {
-        assertThat(Day2.runPart1()).isEqualTo(660);
+        assertThat(Day3.runPart1()).isEqualTo(179571322);
     }
 
     @Test
     public void testPart2() {
-        assertThat(Day2.runPart2()).isEqualTo(689);
+        assertThat(Day3.runPart2()).isEqualTo(103811193);
     }
 }

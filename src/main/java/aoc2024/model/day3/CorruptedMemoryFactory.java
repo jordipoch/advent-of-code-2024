@@ -13,7 +13,11 @@ public class CorruptedMemoryFactory {
         this.extractor = extractor;
     }
 
-    public CorruptedMemory create(List<String> memoryData) {
-        return CorruptedMemory.of(memoryData, extractor);
+    public CorruptedMemory create(List<String> memoryData, boolean toggleActive) {
+        var instructions = memoryData.stream()
+                .flatMap(dataPart -> extractor.extractInstructions(dataPart).stream())
+                .toList();
+
+        return CorruptedMemory.of(instructions, toggleActive);
     }
 }

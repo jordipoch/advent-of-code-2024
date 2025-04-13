@@ -1,4 +1,7 @@
 package aoc2024.model.day3.instruction;
 
-public class Instruction {
+import aoc2024.model.day3.CorruptedMemory;
+
+public interface Instruction {
+    void applyToMemory(CorruptedMemory memory);
 }

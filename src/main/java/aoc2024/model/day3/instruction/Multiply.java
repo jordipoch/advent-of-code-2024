@@ -1,8 +1,10 @@
-package aoc2024.model.day3;
+package aoc2024.model.day3.instruction;
+
+import aoc2024.model.day3.CorruptedMemory;
 
 import java.util.Objects;
 
-public class Multiply {
+public class Multiply implements Instruction {
     private final int value1;
     private final int value2;
 
@@ -15,8 +17,9 @@ public class Multiply {
         return new Multiply(value1, value2);
     }
 
-    public int apply() {
-        return value1 * value2;
+    @Override
+    public void applyToMemory(CorruptedMemory memory) {
+        memory.addToResult((long) value1 * value2);
     }
 
     @Override

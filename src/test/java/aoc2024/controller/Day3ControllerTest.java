@@ -12,14 +12,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Day3ControllerTest {
     private Day3Controller controller;
 
-    @BeforeMethod
-    public void setUp() {
-        var supplier = new Day3InputSupplier(new InputFileDataLoaderFactory());
-        controller = new Day3Controller(new CorruptedMemoryFactory(new InstructionsExtractor()), supplier);
+    @Test
+    public void testGetPart1Result() {
+        createController("input.txt");
+        assertThat(controller.getPart1Result()).isEqualTo(161);
     }
 
     @Test
-    public void testGetPart1Result() {
-        assertThat(controller.getPart1Result()).isEqualTo(161);
+    public void testGetPart2Result() {
+        createController("input2.txt");
+        assertThat(controller.getPart2Result()).isEqualTo(48);
+    }
+
+    private void createController(String filename) {
+        var supplier = new Day3InputSupplier(new InputFileDataLoaderFactory(filename));
+        controller = new Day3Controller(new CorruptedMemoryFactory(new InstructionsExtractor()), supplier);
     }
 }
