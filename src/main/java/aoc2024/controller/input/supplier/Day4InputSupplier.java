@@ -1,0 +1,23 @@
+package aoc2024.controller.input.supplier;
+
+import aoc2024.controller.input.InputDataLoader;
+import aoc2024.controller.input.InputDataLoaderFactory;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.List;
+import java.util.function.Supplier;
+
+@Singleton
+public class Day4InputSupplier implements Supplier<List<String>> {
+    private final InputDataLoader dataLoader;
+
+    @Inject
+    public Day4InputSupplier(InputDataLoaderFactory dataLoaderFactory) {
+        this.dataLoader = dataLoaderFactory.createFromFile(4);
+    }
+    @Override
+    public List<String> get() {
+        return dataLoader.loadData();
+    }
+}

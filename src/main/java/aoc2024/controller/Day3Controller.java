@@ -1,7 +1,6 @@
 package aoc2024.controller;
 
 import aoc2024.controller.input.annotation.Day3;
-import aoc2024.model.day3.CorruptedMemory;
 import aoc2024.model.day3.CorruptedMemoryFactory;
 
 import javax.inject.Inject;

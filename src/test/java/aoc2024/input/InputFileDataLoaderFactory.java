@@ -4,7 +4,7 @@ import aoc2024.controller.input.InputDataLoader;
 import aoc2024.controller.input.InputDataLoaderFactory;
 
 public class InputFileDataLoaderFactory implements InputDataLoaderFactory {
-    private String filename = "input.txt";
+    private String filename;
 
     public InputFileDataLoaderFactory() {
     }
@@ -15,6 +15,9 @@ public class InputFileDataLoaderFactory implements InputDataLoaderFactory {
 
     @Override
     public InputDataLoader createFromFile(int day) {
-        return new InputFileDataLoaderForTest(day, filename);
+        if (filename != null)
+            return new InputFileDataLoaderForTest(day, filename);
+        else
+            return new InputFileDataLoaderForTest(day);
     }
 }

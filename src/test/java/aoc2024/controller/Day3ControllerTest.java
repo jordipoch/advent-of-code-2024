@@ -4,7 +4,6 @@ import aoc2024.controller.input.supplier.Day3InputSupplier;
 import aoc2024.input.InputFileDataLoaderFactory;
 import aoc2024.model.day3.CorruptedMemoryFactory;
 import aoc2024.model.day3.InstructionsExtractor;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
