@@ -1,6 +1,5 @@
 package aoc2024.controller;
 
-import aoc2024.controller.input.supplier.Day2InputSupplier;
 import aoc2024.input.InputFileDataLoaderFactory;
 import aoc2024.model.day2.ReportSafetyChecker;
 import aoc2024.model.day2.UnusualDataFactory;
@@ -14,8 +13,9 @@ public class Day2ControllerTest {
 
     @BeforeMethod
     public void setUp() {
-        var supplier = new Day2InputSupplier(new InputFileDataLoaderFactory());
-        controller = new Day2Controller(new UnusualDataFactory(new ReportSafetyChecker()), supplier);
+        controller = new Day2Controller(
+                new InputFileDataLoaderFactory(),
+                new UnusualDataFactory(new ReportSafetyChecker()));
     }
 
     @Test

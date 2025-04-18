@@ -1,6 +1,5 @@
 package aoc2024.controller;
 
-import aoc2024.controller.input.supplier.Day3InputSupplier;
 import aoc2024.input.InputFileDataLoaderFactory;
 import aoc2024.model.day3.CorruptedMemoryFactory;
 import aoc2024.model.day3.InstructionsExtractor;
@@ -24,7 +23,8 @@ public class Day3ControllerTest {
     }
 
     private void createController(String filename) {
-        var supplier = new Day3InputSupplier(new InputFileDataLoaderFactory(filename));
-        controller = new Day3Controller(new CorruptedMemoryFactory(new InstructionsExtractor()), supplier);
+        controller = new Day3Controller(
+                new InputFileDataLoaderFactory(filename),
+                new CorruptedMemoryFactory(new InstructionsExtractor()));
     }
 }
