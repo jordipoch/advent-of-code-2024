@@ -8,7 +8,7 @@ public class Crosswords {
     private final int xSize;
     private final int ySize;
 
-    public Crosswords(char[][] data) {
+    private Crosswords(char[][] data) {
         this.data = data;
         this.xSize = data[0].length;
         this.ySize = data.length;
@@ -28,23 +28,42 @@ public class Crosswords {
         return numXMAS;
     }
 
+    public int countNumberOfXShapedMAS() {
+        int numXShapedMas = 0;
+
+        for (int y = 0; y < ySize; y++)
+            for (int x = 0; x < data[y].length; x++)
+                if (isCharAtPos('A', Position.of(x, y)))
+                    if (isXShapedMASAtPosition(x, y))
+                        numXShapedMas++;
+
+        return numXShapedMas;
+    }
+
+    private boolean isXShapedMASAtPosition(int x, int y) {
+        return isMasFromPosition(Position.of(x - 1, y - 1), Direction.RIGHT_DOWN)
+                + isMasFromPosition(Position.of(x - 1, y + 1), Direction.RIGHT_UP)
+                + isMasFromPosition(Position.of(x + 1, y - 1), Direction.LEFT_DOWN)
+                + isMasFromPosition(Position.of(x + 1, y + 1), Direction.LEFT_UP) == 2;
+    }
+
     private int countXmasFromPosition(int x, int y) {
         var position = Position.of(x, y);
         if (!isCharAtPos('X', position))
             return 0;
 
         return Stream.of(Direction.values())
-                .mapToInt(d -> isXMasFromPosition(position, d))
+                .mapToInt(d -> isMasFromPosition(d.getNextPosition(position), d))
                 .sum();
     }
 
-    private int isXMasFromPosition(Position p, Direction d) {
+    private int isMasFromPosition(Position p, Direction d) {
         String mas = "MAS";
         var nextPos = p;
         for (char c : mas.toCharArray()) {
-            nextPos = d.getNextPosition(nextPos);
             if (!isCharAtPos(c, nextPos))
                 return 0;
+            nextPos = d.getNextPosition(nextPos);
         }
 
         return 1;

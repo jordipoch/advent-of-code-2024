@@ -5,20 +5,20 @@ import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Day3Test {
+public class Day4Test {
 
     @BeforeClass
     public void setUp() {
-        Day3.createInjector();
+        Day4.createInjector();
     }
 
     @Test
     public void testPart1() {
-        assertThat(Day3.runPart1()).isEqualTo(179571322);
+        assertThat(Day4.runPart1()).isEqualTo(2718);
     }
 
     @Test
     public void testPart2() {
-        assertThat(Day3.runPart2()).isEqualTo(103811193);
+        assertThat(Day4.runPart2()).isEqualTo(2046);
     }
 }

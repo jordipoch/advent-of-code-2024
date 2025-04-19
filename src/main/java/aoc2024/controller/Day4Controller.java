@@ -1,6 +1,5 @@
 package aoc2024.controller;
 
-import aoc2024.controller.input.InputDataLoader;
 import aoc2024.controller.input.InputDataLoaderFactory;
 import aoc2024.model.day4.Crosswords;
 
@@ -9,18 +8,21 @@ import javax.inject.Singleton;
 
 @Singleton
 public class Day4Controller {
-private final InputDataLoader inputDataLoader;
+private final Crosswords crosswords;
 
     @Inject
     public Day4Controller(InputDataLoaderFactory dataLoaderFactory) {
-        inputDataLoader = dataLoaderFactory.createFromFile(4);
+        var inputDataLoader = dataLoaderFactory.createFromFile(4);
+        crosswords = Crosswords.create()
+                .data(inputDataLoader.loadData())
+                .build();
     }
 
     public int getPart1Result() {
-        var crosswords = Crosswords.create()
-                .data(inputDataLoader.loadData())
-                .build();
-
         return crosswords.countNumberOfXMAS();
+    }
+
+    public int getPart2Result() {
+        return crosswords.countNumberOfXShapedMAS();
     }
 }

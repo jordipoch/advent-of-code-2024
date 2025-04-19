@@ -13,4 +13,11 @@ public class Day4ControllerTest {
 
         assertThat(controller.getPart1Result()).isEqualTo(18);
     }
+
+    @Test
+    public void testGetPart2Result() {
+        var controller = new Day4Controller(new InputFileDataLoaderFactory("part2_example_input.txt"));
+
+        assertThat(controller.getPart2Result()).isEqualTo(9);
+    }
 }
