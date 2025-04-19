@@ -10,6 +10,10 @@ public class Day1 extends BaseRunner {
     public static void main(String... args) {
         createInjector();
 
+        run();
+    }
+
+    public static void run() {
         runPart1();
         runPart2();
     }
