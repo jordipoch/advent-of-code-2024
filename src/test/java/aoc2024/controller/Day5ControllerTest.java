@@ -14,4 +14,11 @@ public class Day5ControllerTest {
 
         assertThat(controller.getPart1Result()).isEqualTo(143);
     }
+
+    @Test
+    public void testGetPart2Result() {
+        var controller = new Day5Controller(new InputFileDataLoaderFactory(), new SafetyManualsProtocolsFactory());
+
+        assertThat(controller.getPart2Result()).isEqualTo(123);
+    }
 }

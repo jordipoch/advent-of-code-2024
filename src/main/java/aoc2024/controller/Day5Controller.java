@@ -22,4 +22,9 @@ public class Day5Controller {
         var safetyManualProtocols = safetyManualsProtocolsFactory.create(inputDataLoader.loadData());
         return safetyManualProtocols.getMiddlePageSumOfCorrectlyOrderedUpdates();
     }
+
+    public int getPart2Result() {
+        var safetyManualProtocols = safetyManualsProtocolsFactory.create(inputDataLoader.loadData());
+        return safetyManualProtocols.getMiddlePageSumOfIncorrectlyOrderedUpdatesAfterCorrectingThem();
+    }
 }

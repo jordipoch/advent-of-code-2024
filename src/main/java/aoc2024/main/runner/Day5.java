@@ -15,6 +15,7 @@ public class Day5 extends BaseRunner {
 
     public static void run() {
         runPart1();
+        runPart2();
     }
 
     public static long runPart1() {
@@ -22,6 +23,14 @@ public class Day5 extends BaseRunner {
 
         long result = controller.getPart1Result();
         logger.info("Middle page sum of correctly ordered updates: {}", result);
+        return result;
+    }
+
+    public static long runPart2() {
+        var controller = injector.getInstance(Day5Controller.class);
+
+        long result = controller.getPart2Result();
+        logger.info("Middle page sum of incorrectly ordered updates after ordering them correctly: {}", result);
         return result;
     }
 }

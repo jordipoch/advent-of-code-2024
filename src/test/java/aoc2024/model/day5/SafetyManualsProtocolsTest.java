@@ -18,14 +18,14 @@ public class SafetyManualsProtocolsTest {
         factory = new SafetyManualsProtocolsFactory();
     }
 
-    @Test(dataProvider = "getMiddlePageSumOfCorrectlyOrderedUpdates test data")
+    @Test(dataProvider = "getMiddlePageSumOfCorrectlyOrderedUpdatesTestData")
     public void whenSomeManualUpdatesMeetsAllSafetyRulesShouldReturnSumOfMiddleNumbers(List<String> data, int expectedResult) {
         var safetyManualProtocols = factory.create(data);
 
         assertThat(safetyManualProtocols.getMiddlePageSumOfCorrectlyOrderedUpdates()).isEqualTo(expectedResult);
     }
 
-    @DataProvider(name = "getMiddlePageSumOfCorrectlyOrderedUpdates test data")
+    @DataProvider
     private Iterator<Object[]> getMiddlePageSumOfCorrectlyOrderedUpdatesTestData() {
         return Arrays.asList(new Object[][] {
                 {List.of( // Single manual update meets all rules
@@ -61,6 +61,34 @@ public class SafetyManualsProtocolsTest {
                         "",
                         "75,29,13"),
                         0}
+        }).iterator();
+    }
+
+    @Test(dataProvider = "getMiddleSumOfIncorrectlyOrderedUpdatesAfterCorrectingThemTestData")
+    public void testGetMiddleSumOfIncorrectlyOrderedUpdatesAfterCorrectingThem(List<String> data, int expectedResult) {
+        var safetyManualProtocols = factory.create(data);
+
+        assertThat(safetyManualProtocols.getMiddlePageSumOfIncorrectlyOrderedUpdatesAfterCorrectingThem()).isEqualTo(expectedResult);
+    }
+
+    @DataProvider
+    private Iterator<Object[]> getMiddleSumOfIncorrectlyOrderedUpdatesAfterCorrectingThemTestData() {
+        return Arrays.asList(new Object[][] {
+                {List.of( // Only one manual not meeting the rules
+                        "29|75",
+                        "12|28",
+                        "",
+                        "75,29,13"),
+                        75},
+                {List.of( // Two manuals not meeting the rules
+                        "29|75",
+                        "12|28",
+                        "72|12",
+                        "",
+                        "75,29,13",
+                        "28,12,13",
+                        "29,75,12"),
+                        75+28},
         }).iterator();
     }
 }

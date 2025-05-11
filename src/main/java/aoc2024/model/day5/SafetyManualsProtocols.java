@@ -22,6 +22,15 @@ public class SafetyManualsProtocols {
                 .sum();
     }
 
+    public int getMiddlePageSumOfIncorrectlyOrderedUpdatesAfterCorrectingThem() {
+        return manualUpdates.stream()
+                .filter(manualUpdate -> !manualUpdate.meetsAllRules(rules))
+                .map(manualUpdate -> ManualUpdateOrderCorrector.of(manualUpdate, rules))
+                .map(ManualUpdateOrderCorrector::getCorrectlyOrderedManualUpdate)
+                .mapToInt(ManualUpdate::getMiddlePage)
+                .sum();
+    }
+
     @Override
     public String toString() {
         return rules.stream()
