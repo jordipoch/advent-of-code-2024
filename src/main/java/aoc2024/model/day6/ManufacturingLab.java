@@ -27,34 +27,24 @@ public class ManufacturingLab {
     }
 
     public int calculateNumberOfDifferentPositionsWalkedByTheGuard() {
-        boolean outOfTheRoom = false;
-        while (!outOfTheRoom) {
+        while (isPositionInTheRoom(guard.getPosition())) {
+            markGuardVisitedPosition();
             var guardNextPos = guard.getNextPosition();
             if (isPositionInTheRoom(guardNextPos)) {
-                if (getCharAtPos(guardNextPos) == '#') {
+                if (isPositionBlocked(guardNextPos)) {
                     guard = guard.turn();
                 } else {
-                    markGuardVisitedPosition();
                     guard = guard.move();
                     markGuardCurrentPosition();
                 }
             } else {
-                markGuardVisitedPosition();
                 guard = guard.move();
-                outOfTheRoom = true;
             }
         }
 
         logger.debug("Positions walked by the guard before leaving the manufacturing lab: {}{}", System.lineSeparator(), this);
 
         return getNumOfDistinctVisitedPositions();
-    }
-
-    private int getNumOfDistinctVisitedPositions() {
-        return (int) Arrays.stream(map)
-                .flatMap(Arrays::stream)
-                .filter(c -> c.equals('X'))
-                .count();
     }
 
     private Position calculateGuardInitialPosition() {
@@ -72,12 +62,23 @@ public class ManufacturingLab {
         return Position.of(guardXPos, guardYPos);
     }
 
-    private void markGuardCurrentPosition() {
-        setCharAtPos(guard.getPosition(), guard.getDirectionChar());
+    private boolean isPositionBlocked(Position guardNextPos) {
+        return getCharAtPos(guardNextPos) == '#';
     }
 
     private void markGuardVisitedPosition() {
         setCharAtPos(guard.getPosition(), 'X');
+    }
+
+    private void markGuardCurrentPosition() {
+        setCharAtPos(guard.getPosition(), guard.getDirectionChar());
+    }
+
+    private int getNumOfDistinctVisitedPositions() {
+        return (int) Arrays.stream(map)
+                .flatMap(Arrays::stream)
+                .filter(c -> c.equals('X'))
+                .count();
     }
 
     private char getCharAtPos(Position p) {
