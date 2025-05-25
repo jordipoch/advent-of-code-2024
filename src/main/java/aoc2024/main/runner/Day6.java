@@ -15,6 +15,7 @@ public class Day6 extends BaseRunner {
 
     public static void run() {
         runPart1();
+        runPart2();
     }
 
     public static long runPart1() {
@@ -22,6 +23,14 @@ public class Day6 extends BaseRunner {
 
         long result = controller.getPart1Result();
         logger.info("Number of distinct positions visited by the guard: {}", result);
+        return result;
+    }
+
+    public static long runPart2() {
+        var controller = injector.getInstance(Day6Controller.class);
+
+        long result = controller.getPart2Result();
+        logger.info("Number of positions where the obstruction would cause a loop: {}", result);
         return result;
     }
 }

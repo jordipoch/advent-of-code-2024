@@ -30,11 +30,11 @@ public class Guard {
     }
 
     public char getDirectionChar() {
-        return direction.getValue();
+        return direction.getCurrentPositionChar();
     }
 
     @Override
     public String toString() {
-        return String.valueOf(direction.getValue());
+        return String.valueOf(direction.getCurrentPositionChar());
     }
 }

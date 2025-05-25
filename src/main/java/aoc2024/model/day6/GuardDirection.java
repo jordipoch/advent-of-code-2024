@@ -4,33 +4,35 @@ import lombok.Getter;
 
 @Getter
 public enum GuardDirection {
-    UP('^') {
+    UP('^', '|') {
         @Override
         public Position getNextPosition(Position from) {
             return Position.of(from.x(), from.y() - 1);
         }
-    }, RIGHT('>') {
+    }, RIGHT('>', '-') {
         @Override
         public Position getNextPosition(Position from) {
             return Position.of(from.x() + 1, from.y());
         }
-    }, DOWN('v') {
+    }, DOWN('v', '|') {
         @Override
         public Position getNextPosition(Position from) {
             return Position.of(from.x(), from.y() + 1);
         }
-    }, LEFT('<') {
+    }, LEFT('<', '-') {
         @Override
         public Position getNextPosition(Position from) {
             return Position.of(from.x() - 1, from.y());
         }
     };
 
-    GuardDirection(char value) {
-        this.value = value;
+    GuardDirection(char currentPositionChar, char visitedPositionChar) {
+        this.currentPositionChar = currentPositionChar;
+        this.visitedPositionChar = visitedPositionChar;
     }
 
-    private final char value;
+    private final char currentPositionChar;
+    private final char visitedPositionChar;
 
     public GuardDirection turnRight() {
         return values()[(ordinal() + 1) % 4];

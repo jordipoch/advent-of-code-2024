@@ -16,4 +16,9 @@ public class Day6Test {
     public void testPart1() {
         assertThat(Day6.runPart1()).isEqualTo(5409);
     }
+
+    @Test
+    public void testPart2() {
+        assertThat(Day6.runPart2()).isEqualTo(2022);
+    }
 }
