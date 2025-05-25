@@ -19,15 +19,11 @@ public class ManufacturingLabSimulator {
         this.factory = manufacturingLabFactory;
     }
 
-    /*public static ManufacturingLabSimulator of(List<String> inputMap) {
-        return new ManufacturingLabSimulator(inputMap);
-    }*/
-
     public int countNumberOfPositionsWhereTheObstructionCausesALoop() {
         var obstaclesWithLoops = factory.create(inputMap)
                 .simulateGuardWalking()
                 .getPositionsVisited()
-                .stream()
+                .parallelStream()
                 .skip(1)
                 .map(p -> factory.createWithExtraObstacle(inputMap, p))
                 .map(ManufacturingLab::simulateGuardWalking)
