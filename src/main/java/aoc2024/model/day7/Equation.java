@@ -1,8 +1,8 @@
 package aoc2024.model.day7;
 
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @EqualsAndHashCode
-@Builder
+@SuperBuilder
 public class Equation {
-    private static final Logger logger = LogManager.getLogger();
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
-    private final long result;
-    private final List<Integer> testValues;
+    protected final long result;
+    protected final List<Integer> testValues;
 
     public boolean canBeSolved() {
         var solutions = checkEquationRecursively(testValues.get(0), 1, String.valueOf(testValues.get(0)));
@@ -31,16 +31,24 @@ public class Equation {
         return result;
     }
 
-    private List<String> checkEquationRecursively(long partialResult, int currentPos, String currentSolution) {
+    protected List<String> checkEquationRecursively(long partialResult, int currentPos, String currentSolution) {
         List<String> solutions = new ArrayList<>();
         if (currentPos < testValues.size()) {
-            solutions.addAll(checkEquationRecursively(partialResult + testValues.get(currentPos), currentPos + 1, currentSolution + "+" + testValues.get(currentPos)));
-            solutions.addAll(checkEquationRecursively(partialResult * testValues.get(currentPos), currentPos + 1, currentSolution + "*" + testValues.get(currentPos)));
+            solutions.addAll(doRecursiveCalls(partialResult, currentPos, currentSolution));
         } else {
             if (partialResult == result) {
                 solutions.add(String.format("%d=%s", result, currentSolution));
             }
         }
+        return solutions;
+    }
+
+    protected List<String> doRecursiveCalls(long partialResult, int currentPos, String currentSolution) {
+        List<String> solutions = new ArrayList<>();
+
+        solutions.addAll(checkEquationRecursively(partialResult + testValues.get(currentPos), currentPos + 1, currentSolution + "+" + testValues.get(currentPos)));
+        solutions.addAll(checkEquationRecursively(partialResult * testValues.get(currentPos), currentPos + 1, currentSolution + "*" + testValues.get(currentPos)));
+
         return solutions;
     }
 

@@ -19,4 +19,10 @@ public class EquationSetCalibrationFactory {
                 .map(equationFactory::create)
                 .toList());
     }
+
+    public EquationSetCalibrator createWithConcat(List<String> equationsData) {
+        return new EquationSetCalibrator(equationsData.stream()
+                .map(equationFactory::createWithConcat)
+                .toList());
+    }
 }

@@ -19,4 +19,16 @@ public class EquationFactoryTest {
 
         assertThat(equation).isEqualTo(expectedEquation);
     }
+
+    @Test
+    public void testCreateWithConcat() {
+        var factory = new EquationFactory();
+        var equation = factory.createWithConcat("292: 11 6 16 20");
+        var expectedEquation = EquationWithConcat.builder()
+                .result(292)
+                .testValues(List.of(11, 6, 16, 20))
+                .build();
+
+        assertThat(equation).isEqualTo(expectedEquation);
+    }
 }

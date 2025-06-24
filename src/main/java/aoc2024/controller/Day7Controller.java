@@ -22,4 +22,9 @@ public class Day7Controller {
         var equationSetCalibrator = factory.create(inputDataLoader.loadData());
         return equationSetCalibrator.calculateCalibrationResult();
     }
+
+    public long getPart2Result() {
+        var equationSetCalibrator = factory.createWithConcat(inputDataLoader.loadData());
+        return equationSetCalibrator.calculateCalibrationResult();
+    }
 }

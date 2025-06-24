@@ -10,5 +10,6 @@ public class AllDaysRunner extends BaseRunner {
         Day4.run();
         Day5.run();
         Day6.run();
+        Day7.run();
     }
 }
